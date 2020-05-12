@@ -15,15 +15,15 @@
     <body>
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script>
-            foodNameData = ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"]
-            foodData = [10, 20, 30, 40, 50]
-            ingredients = ["salt"]
+            foodNameData = [["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "hot buns", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "hot buns", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "hot buns", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf", "grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf", "grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"]]
+            foodData = [[10, 20, 30, 40, 50], [10, 20, 30, 400, 50], [10, 20, 30, 40, 500], [10, 200, 30, 400, 50], [10, 20, 300, 40, 50], [10, 20, 30, 400, 50], [10, 20, 30, 40, 500], [10, 200, 30, 40, 50, 10, 20, 30, 40, 50, 10, 200, 30, 40, 50]]
+            ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta", "oregano", "water"]
 
             svg = d3.select("body").append("svg");
             g = svg.append("g");
 
             pack = d3.pack()
-            .padding(function(d) {
+                .padding(function(d) {
                 return d.height*4;
             });
 
@@ -46,7 +46,7 @@
             ingredientNodes = node.ancestors();
 
             ingredientBubbles = g.selectAll(".ingredient-circle")
-            .data(ingredientNodes[0].children, function(d) {
+                .data(ingredientNodes[0].children, function(d) {
                 return d.data.name;
             });
 
@@ -56,11 +56,27 @@
                 .attr("class", "ingredient-circle")
                 .attr("cx", function(d) { return d.x; })
                 .attr("cy", function(d) { return d.y; })
-                .attr("r",  function(d) { return d.r; })
-                .text(function(d){return d.data.name});
+                .attr("r",  function(d) { return d.r; });
+
+            ingredientBubbles.enter().append("text")
+                .text(function(d) {
+                return d.data.name
+            }).attr("text-anchor", "middle")
+                .attr("dy", function(d) {
+                return d.y - ((4*d.r)/5);
+            }).attr("dx", function(d) {
+                return d.x;
+                //if (((d.data.name).length) < 4) {
+                //    return d.x + (d.r / 2);
+                //} else {
+                //    return d.x + (d.r / ((d.data.name).length)*2.5);
+                //}
+            }).attr("font-size", function(d) {
+                return d.r / 5;
+            }).style("fill", function(d) { return "#000000"; })
 
             recipeBubbles = g.selectAll(".recipe-circle")
-            .data(recipeNodes, function(d) {
+                .data(recipeNodes, function(d) {
                 return d.data.name;
             });
 
@@ -70,11 +86,14 @@
                 .attr("class", "recipe-circle")
                 .attr("cx", function(d) { return d.x; })
                 .attr("cy", function(d) { return d.y; })
-                .attr("r",  function(d) { return d.r; });
+                .attr("r",  function(d) { return d.r; })
+                .on("click", function(d) {
+                    console.log("d.data.name: " + d.data.name)
+                });
 
             recipeBubbles.enter().append("text")
                 .text(function(d) {
-                console.log(d.data.name)
+                //console.log(d.data.name)
                 return d.data.name
             }).attr("text-anchor", "middle")
                 .attr("dy", function(d) {
@@ -88,19 +107,19 @@
             function reformatData(){
                 reformatted = {
                     name: "root",
-                    children: ingredients.map(name => {
+                    children: ingredients.map(function(ingredient_i, j) {
                         return {
-                            name,
-                            children: d3.range(5).map(function(d, i) {
+                            name: ingredients[j],
+                            children: d3.range(foodNameData[j].length).map(function(d, i) {
                                 return {
-                                    name: foodNameData[i],
-                                    value: foodData[i]
+                                    name: foodNameData[j][i],
+                                    value: foodData[j][i]
                                 }
                             })
                         }
                     })
                 };
-                console.log(reformatted)
+                //console.log(reformatted)
                 return reformatted
             }
         </script>
