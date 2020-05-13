@@ -1,13 +1,23 @@
+recipe_id = "5ea223e14a5f7f67bb3d9efc"
+endpoint_framework =  "http://api.axonbeats.com/single_recipe?recipe_id="
+recipe_api_request = endpoint_framework + recipe_id
 
-var raw_data = {"nutrition" : {"Calories":"514 kcal",
-                               "Fat":"23 g",
-                               "Saturated Fat":"8 g",
-                               "Carbohydrate":"44 g",
-                               "Sugar":"8 g",
-                               "Dietary Fiber":"9 g",
-                               "Protein":"39 g",
-                               "Cholesterol":"119 mg",
-                               "Sodium":"190 mg"}}
+
+var response = fetch(recipe_api_request)
+console.log(response)
+    // .then(response => response.json())
+    // .then(raw_data => console.log(data));
+
+// var raw_data = {"nutrition" : data['nutrition']}
+// var raw_data = {"nutrition" : {"Calories":"514 kcal",
+//                                "Fat":"23 g",
+//                                "Saturated Fat":"8 g",
+//                                "Carbohydrate":"44 g",
+//                                "Sugar":"8 g",
+//                                "Dietary Fiber":"9 g",
+//                                "Protein":"39 g",
+//                                "Cholesterol":"119 mg",
+//                                "Sodium":"190 mg"}}
 
 var rkeys = Object.keys(raw_data["nutrition"])
 
@@ -15,11 +25,9 @@ all_keys = []
 all_vals = []
 for (i = 0; i < rkeys.length; i++) {
     var istr = i.toString();
-    var ival = (raw_data.nutrition[rkeys[istr]]).split(" ")
-    if (ival[1] == "g"){
-        all_vals.push(parseInt(ival[0]))
-        all_keys.push(rkeys[istr])
-    }
+    var ival = (raw_data.nutrition[rkeys[istr]])
+    all_vals.push(parseInt(ival))
+    all_keys.push(rkeys[istr])
 }
 
 var margin = {top: 20, right: 20, bottom: 20, left: 20},
