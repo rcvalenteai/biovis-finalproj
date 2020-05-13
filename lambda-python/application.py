@@ -67,6 +67,17 @@ class SingleRecipe(Resource):
         return VisualizationQuery.get_recipe_info(recipe_id)
 
 
+@api.route("/ingredient_list")
+class IngredientList(Resource):
+
+    def get(self):
+        """
+        get list of all ingredients in dataset in json formatted ingredients
+        :return: json ingredients with list of ingredients
+        """
+        return VisualizationQuery.get_list_of_ingredients()
+
+
 # @api.route("/question_img_parser")
 # class QuestionImageParser(Resource):
 #
