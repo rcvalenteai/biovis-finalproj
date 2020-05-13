@@ -1,13 +1,13 @@
 foodNameData = [["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "hot buns", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "hot buns", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "hot buns", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf", "grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf", "grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"]]
 foodData = [[10, 20, 30, 40, 50], [10, 20, 30, 400, 50], [10, 20, 30, 40, 500], [10, 200, 30, 400, 50], [10, 20, 300, 40, 50], [10, 20, 30, 400, 50], [10, 20, 30, 40, 500], [10, 200, 30, 40, 50, 10, 20, 30, 40, 50, 10, 200, 30, 40, 50]]
-ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta", "oregano", "water"]
+var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta", "oregano", "water"]
 
 //svg = d3.select("#bubbles").append("svg");
-svg = d3.select("#bubbles");
-g = svg.append("g");
+var svg = d3.select("#bubbles");
+var g = svg.append("g");
 
-pack = d3.pack()
-    .padding(function(d) {
+var pack = d3.pack()
+.padding(function(d) {
     return d.height*4;
 });
 
@@ -16,20 +16,21 @@ let root = d3.hierarchy(reformatData())
     return d.value;
 });
 
-diameter = Math.min(innerWidth, innerHeight);
-width = diameter;
-height = diameter;
+var width = 500;
+var height = 500;
 
-//width = this.parent.width
-//height = this.parent.height
-svg.attr("width", 500)
-    .attr("height", 500);
+svg.attr("width", width).attr("height", height);
 
 pack.size([width, height]);
 
-node = pack(root);
-recipeNodes = node.leaves();
-ingredientNodes = node.ancestors();
+var scale_colors = {};
+ingredients.forEach(function(d, i) {
+    scale_colors[d] = d3.schemeTableau10[i];
+});
+
+var node = pack(root);
+var recipeNodes = node.leaves();
+var ingredientNodes = node.ancestors();
 
 ingredientBubbles = g.selectAll(".ingredient-circle")
     .data(ingredientNodes[0].children, function(d) {
@@ -37,14 +38,15 @@ ingredientBubbles = g.selectAll(".ingredient-circle")
 });
 
 ingredientBubbles.enter().append("circle")
-    .style("fill",   function(d) { return "rgb(102, 194, 165)"; })
-    .style("stroke", function(d) { return "rgb(102, 194, 165)"; })
     .attr("class", "ingredient-circle")
+    .style("fill",   function(d) { return scale_colors[d.data.name]; })
+    .style("stroke", function(d) { return scale_colors[d.data.name]; })
     .attr("cx", function(d) { return d.x; })
     .attr("cy", function(d) { return d.y; })
     .attr("r",  function(d) { return d.r; });
 
-ingredientBubbles.enter().append("text")
+ingredientBubbles.enter()
+    .append("text")
     .text(function(d) {
     return d.data.name
 }).attr("text-anchor", "middle")
@@ -67,15 +69,16 @@ recipeBubbles = g.selectAll(".recipe-circle")
 });
 
 recipeBubbles.enter().append("circle")
-    .style("fill",   function(d) { return "rgb(102, 194, 165)"; })
-    .style("stroke", function(d) { return "rgb(102, 194, 165)"; })
     .attr("class", "recipe-circle")
+    .style("fill",   function(d) { return scale_colors[d.parent.data.name]; })
+    .style("stroke", function(d) { return scale_colors[d.parent.data.name]; })
     .attr("cx", function(d) { return d.x; })
     .attr("cy", function(d) { return d.y; })
     .attr("r",  function(d) { return d.r; })
     .on("click", clicked);
 
-recipeBubbles.enter().append("text")
+recipeBubbles.enter()
+    .append("text")
     .text(function(d) {
     //console.log(d.data.name)
     return d.data.name
@@ -103,7 +106,6 @@ function reformatData(){
             }
         })
     };
-    //console.log(reformatted)
     return reformatted
 }
 
@@ -112,7 +114,7 @@ function clicked(d) {
 }
 
 var zoom = d3.zoom()
-.scaleExtent([1, 8])
+.scaleExtent([1, 12])
 .on('zoom', function() {
     g.selectAll('circle')
         .attr('transform', d3.event.transform);
