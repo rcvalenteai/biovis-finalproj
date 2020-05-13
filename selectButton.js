@@ -14,4 +14,9 @@ fetch(endpoint_framework)
         .append('option')
         .text(function (d) { return d; }) // text showed in the menu
         .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
+    d3.select("#ingredient_select").on("change", function(d) {
+        var selectedOption = d3.select(this).property("value")
+        get_bubbles(selectedOption)
+    })
 })

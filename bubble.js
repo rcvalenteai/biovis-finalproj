@@ -185,9 +185,6 @@ var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta",
     clearSVG()
 }
 
-//get_bubbles("Asparagus")
-get_bubbles("Celery")
-
 
 function clearSVG() {
     d3.select("#bubbles").select("svg").remove();
