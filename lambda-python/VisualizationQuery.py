@@ -63,6 +63,7 @@ def get_recipe_info(recipe_id):
         recipe_data['nutrition'] = nutrition_data
         recipe_data['image'] = result["image"]
         recipe_data['rating'] = result["rating"]
+        recipe_data['link'] = result["instructions"]
     client.close()
     return recipe_data
 
