@@ -182,10 +182,9 @@ var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta",
 
         svg.call(zoom);
     })
-    clearSVG()
 }
 
 
-function clearSVG() {
-    d3.select("#bubbles").select("svg").remove();
+function clearSVGBubble() {
+    d3.select("#bubbles").selectAll().remove();
 }

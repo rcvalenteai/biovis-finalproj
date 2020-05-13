@@ -17,6 +17,7 @@ fetch(endpoint_framework)
 
     d3.select("#ingredient_select").on("change", function(d) {
         var selectedOption = d3.select(this).property("value")
+        clearSVGBubble()
         get_bubbles(selectedOption)
     })
 })
