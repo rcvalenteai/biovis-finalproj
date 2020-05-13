@@ -13,8 +13,6 @@ fetch(recipe_api_request)
     .then(() => rkeys = console.log(Object.keys(raw_data)))
     .then( () => {
 
-
-    
     splits = raw_data["title"]
     names = []
     console.log(splits)
