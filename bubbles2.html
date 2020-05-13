@@ -19,7 +19,8 @@
             foodData = [[10, 20, 30, 40, 50], [10, 20, 30, 400, 50], [10, 20, 30, 40, 500], [10, 200, 30, 400, 50], [10, 20, 300, 40, 50], [10, 20, 30, 400, 50], [10, 20, 30, 40, 500], [10, 200, 30, 40, 50, 10, 20, 30, 40, 50, 10, 200, 30, 40, 50]]
             ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta", "oregano", "water"]
 
-            svg = d3.select("body").append("svg");
+            svg = d3.select("body")
+                .append("svg");
             g = svg.append("g");
 
             pack = d3.pack()
@@ -88,8 +89,8 @@
                 .attr("cy", function(d) { return d.y; })
                 .attr("r",  function(d) { return d.r; })
                 .on("click", function(d) {
-                    console.log("d.data.name: " + d.data.name)
-                });
+                console.log("d.data.name: " + d.data.name)
+            });
 
             recipeBubbles.enter().append("text")
                 .text(function(d) {
