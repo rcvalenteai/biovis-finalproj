@@ -33,9 +33,9 @@ function get_single_recipe(recipe_id) {
             all_keys.push(rkeys[istr])
         }
 
-        var margin = {top: 20, right: 20, bottom: 20, left: 20},
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+        var margin = {top: 40, right: 40, bottom: 40, left: 40},
+            width = 1700 - margin.left - margin.right,
+            height = 900 - margin.top - margin.bottom;
 
         var svg = d3.select("#nutr_bar").append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -75,10 +75,12 @@ function get_single_recipe(recipe_id) {
         });
 
         svg.append("g")
+            .attr("class", "axis")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
         svg.append("g")
+            .attr("class", "axis")
             .call(d3.axisLeft(y));
     })
 }
