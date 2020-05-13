@@ -4,7 +4,6 @@ endpoint_framework =  "http://api.axonbeats.com/bubble_chart?ingredient=Celery&m
 recipe_api_request = endpoint_framework
 //+ ingedient_id
 
-
 var raw_data;
 var rkeys;
 fetch(recipe_api_request)
@@ -154,6 +153,7 @@ var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta",
                     children: d3.range(foodNameData[j].length).map(function(d, i) {
                         return {
                             name: foodNameData[j][i],
+                            id: foodid[j][i],
                             value: foodMetric[j][i]
                         }
                     })
@@ -164,6 +164,8 @@ var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta",
     }
 
     function clicked(d) {
+        clearSVG()
+        get_single_recipe(d.data.id)
         console.log("d.data.name: " + d.data.name)
     }
 
