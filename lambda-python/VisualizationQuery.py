@@ -15,7 +15,7 @@ def bubble_chart(ingredient, metric):
     :return: json formatted, list of ingredients aligned in order with list of recipes and metric
     """
     exist = dict()
-    recipe_data = dict({'id': list(), 'name': list(), 'metric': list()})
+    recipe_data = dict({'id': list(), 'title': list(), 'metric': list()})
     recipes_db, client = get_recipes_db()
     recipes = recipes_db.find({"ingredients." + ingredient: {"$exists": True}})
     for i, recipe in enumerate(recipes):
@@ -67,5 +67,5 @@ def get_recipe_info(recipe_id):
     return recipe_data
 
 
-# bubble_chart("Celery", "preparation_time")
+bubble_chart("Celery", "preparation_time")
 # print(get_recipe_info("5ea223e14a5f7f67bb3d9efc"))
