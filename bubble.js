@@ -14,7 +14,7 @@ function get_bubbles(ingredient_name) {
         .then(data => raw_data = data)
         .then(() => rkeys = console.log(Object.keys(raw_data)))
         .then( () => {
-
+        clearSVGBubble()
         splits = raw_data["title"]
         names = []
         console.log(splits)
@@ -53,14 +53,10 @@ function get_bubbles(ingredient_name) {
         //console.log(foodid)
         //console.log(foodMetric)
         console.log(ingredients)
-        /*
-var foodNameData = [["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "hot buns", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "hot buns", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "hot buns", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"], ["grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf", "grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf", "grilled chicken", "kung pao chicken", "peking duck", "carne asada borrito", "surf and turf"]]
-var foodMetric = [[10, 20, 30, 40, 50], [10, 20, 30, 400, 50], [10, 20, 30, 40, 500], [10, 200, 30, 400, 50], [10, 20, 300, 40, 50], [10, 20, 30, 400, 50], [10, 20, 30, 40, 500], [10, 200, 30, 40, 50, 10, 20, 30, 40, 50, 10, 200, 30, 40, 50]]
-var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta", "oregano", "water"]
-*/
 
         //svg = d3.select("#bubbles").append("svg");
         var svg = d3.select("#bubbles");
+        svg.selectAll("*").remove();
         var g = svg.append("g");
 
         var pack = d3.pack()
@@ -168,8 +164,7 @@ var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta",
         }
 
         function clicked(d) {
-            console.log("d.data.name: " + d.data.name)
-            clearSVG()
+            console.log("d.data.name: " + d.data.id)
             get_single_recipe(d.data.id)
         }
 
@@ -183,10 +178,12 @@ var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta",
         });
 
         svg.call(zoom);
+
     })
+
 }
 
 
 function clearSVGBubble() {
-    d3.select("#bubbles").select("svg").remove();
+    d3.select("svg").selectAll().remove();
 }
