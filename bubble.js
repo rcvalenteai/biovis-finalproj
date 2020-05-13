@@ -169,6 +169,8 @@ var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta",
 
         function clicked(d) {
             console.log("d.data.name: " + d.data.name)
+            clearSVG()
+            get_single_recipe(d.data.id)
         }
 
         var zoom = d3.zoom()
@@ -186,5 +188,5 @@ var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta",
 
 
 function clearSVGBubble() {
-    d3.select("#bubbles").selectAll().remove();
+    d3.select("#bubbles").select("svg").remove();
 }
