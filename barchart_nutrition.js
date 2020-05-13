@@ -19,6 +19,7 @@ function get_single_recipe(recipe_id) {
     displayImage(raw_data.image);
     displayTitle(raw_data.title);
     displayRating(String(raw_data.rating));
+    displayInstructions(raw_data.link);
 
     all_keys = []
     all_vals = []
@@ -93,4 +94,8 @@ function displayTitle(title) {
 
 function displayRating(rating) {
     document.getElementById('recipe_rating').innerText = rating
+}
+
+function displayInstructions(link) {
+    document.getElementById('recipe_instructions').setAttribute('href', link)
 }
