@@ -1,7 +1,5 @@
 // recipe_id = "5ea2257e6f97ab0be6137d89"
 endpoint_framework =  "http://api.axonbeats.com/single_recipe?recipe_id="
-
-
 get_single_recipe("5ea223ec4a5f7f67bb3d9efe")
 function get_single_recipe(recipe_id) {
     recipe_api_request = endpoint_framework + recipe_id
