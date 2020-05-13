@@ -67,5 +67,18 @@ def get_recipe_info(recipe_id):
     return recipe_data
 
 
-bubble_chart("Celery", "preparation_time")
+def get_list_of_ingredients():
+    ingredients = dict()
+    recipes_db, client = get_recipes_db()
+    recipes = recipes_db.find()
+    for recipe in recipes:
+        for ingredient in recipe["ingredients"].keys():
+            ingredients[ingredient] = 0
+    ingredients = {"ingredients": sorted(list(ingredients.keys()))[4:]}
+
+    client.close()
+    return ingredients
+
+print(get_list_of_ingredients())
+# bubble_chart("Celery", "preparation_time")
 # print(get_recipe_info("5ea223e14a5f7f67bb3d9efc"))
