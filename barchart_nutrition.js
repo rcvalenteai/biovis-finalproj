@@ -1,4 +1,4 @@
-recipe_id = "5ea223e14a5f7f67bb3d9efc"
+recipe_id = "5ea2257e6f97ab0be6137d89"
 endpoint_framework =  "http://api.axonbeats.com/single_recipe?recipe_id="
 recipe_api_request = endpoint_framework + recipe_id
 
@@ -8,7 +8,8 @@ var rkeys;
 fetch(recipe_api_request)
     .then(response => response.json())
     .then(data => raw_data = data)
-    .then(() =>
+    .then(() =>rkeys = Object.keys(raw_data["nutrition"]))
+    .then( () => {
 
     // .then(rkeys = Object.keys(raw_data));
 
@@ -25,7 +26,6 @@ fetch(recipe_api_request)
 
 // console.log(raw_data)
 // console.log(Object.keys(raw_data))
-rkeys = Object.keys(raw_data["nutrition"])
 // console.log(rkeys)
 
 all_keys = []
@@ -84,5 +84,4 @@ svg.append("g")
 
 svg.append("g")
     .call(d3.axisLeft(y));
-
-)
+})
