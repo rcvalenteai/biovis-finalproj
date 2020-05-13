@@ -79,6 +79,10 @@ function get_single_recipe(recipe_id) {
     })
 }
 
+function clearSVG() {
+    d3.select("#nutr_bar").select("svg").remove();
+}
+
 function displayImage(src) {
     document.getElementById('recipe_image').src=src;
 }

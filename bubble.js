@@ -164,6 +164,8 @@ var ingredients = ["asdf", "tomato", "pepper", "potato", "orange zest", "pasta",
     }
 
     function clicked(d) {
+        clearSVG()
+        get_single_recipe(d.data.id)
         console.log("d.data.name: " + d.data.name)
     }
 
