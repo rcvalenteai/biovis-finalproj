@@ -1,6 +1,3 @@
-from recipes.Ingredient import Ingredient, get_all_ingredients
-
-
 class Recipe(object):
 
     def __init__(self, json_vals=None):
