@@ -1,5 +1,5 @@
 // recipe_id = "5ea2257e6f97ab0be6137d89"
-endpoint_framework =  "http://api.axonbeats.com/single_recipe?recipe_id="
+endpoint_framework =  "api.axonbeats.com/single_recipe?recipe_id="
 get_single_recipe("5ea24c216f97ab0be6138268")
 function get_single_recipe(recipe_id) {
     clearSVG()

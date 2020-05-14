@@ -6,7 +6,7 @@ var foodMetric = []
 function get_bubbles(ingredient_name) {
     var raw_data;
     var rkeys;
-    endpoint_framework =  "http://api.axonbeats.com/bubble_chart?ingredient=" + ingredient_name
+    endpoint_framework =  "api.axonbeats.com/bubble_chart?ingredient=" + ingredient_name
     //http://api.axonbeats.com/bubble_chart?ingredient=Celery&metric=preparation_time
     recipe_api_request = endpoint_framework
     fetch(recipe_api_request)
