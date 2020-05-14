@@ -11,5 +11,5 @@ d3.select("#filter_select")
 d3.select("#filter_select").on("change", function(d) {
     var selectedOption = d3.select(this).property("value")
     console.log(selectedOption)
-    set_filter(selectedOption)
+    get_bubbles2(selectedOption)
 })
