@@ -1,7 +1,7 @@
-allGroup = ["Celery", "Tomato"]
+allGroup = ["preparation_time", "Calories", "Fat", "Saturated Fat", "Carbohydrate", "Sugar", "Dietary Fiber", "Protein", "Cholesterol", "Sodium"]
 
 d3.select("#filter_select")
-    .selectAll(myOptions)
+    .selectAll('myOptions')
     .data(allGroup)
     .enter()
     .append('option')
@@ -10,5 +10,6 @@ d3.select("#filter_select")
 
 d3.select("#filter_select").on("change", function(d) {
     var selectedOption = d3.select(this).property("value")
-    get_bubbles(selectedOption)
+    console.log(selectedOption)
+    set_filter(selectedOption)
 })
