@@ -9,13 +9,8 @@ import VisualizationQuery
 
 application = Flask(__name__)
 application.config.SWAGGER_UI_DOC_EXPANSION = 'list'
-api = Api(application, version='1.0', title='Livox List Question Classifier API',
-          description='API is for List Question classification and parsing.\n'
-                      'The two main functions of this api.\n'
-                      '- Detecting List Questions\n'
-                      '- Parsing List Entities\n'
-                      '- Use the "/listclassifier" and "/question_img_parser"\n\n'
-                      'Below you may testout the various endpoints as well as other endpoints.')
+api = Api(application, version='1.0', title='HelloFresh dataset API',
+          description='HelloFresh Dataset parsing API')
 cors = CORS(application, resources={r"/*": {"origins":"*"}})
 
 

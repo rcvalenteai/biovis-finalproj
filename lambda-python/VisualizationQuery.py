@@ -40,7 +40,7 @@ def get_recipe_metric(recipe, metric):
     if metric in nutrition:
         amount_raw = recipe['nutrition'][metric].split()
         if len(amount_raw) is not 0:
-            amount = float(amount_raw(0))
+            amount = float(amount_raw[0])
     else:
         return float(recipe[metric].split()[0])
     return amount
@@ -80,6 +80,6 @@ def get_list_of_ingredients():
     client.close()
     return ingredients
 
-print(get_list_of_ingredients())
-# bubble_chart("Celery", "preparation_time")
+# print(get_list_of_ingredients())
+# bubble_chart("Celery", "Calories")
 # print(get_recipe_info("5ea223e14a5f7f67bb3d9efc"))
