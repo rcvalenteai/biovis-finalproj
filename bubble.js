@@ -2,13 +2,27 @@ var ingredients = []
 var foodNameData = []
 var foodid = []
 var foodMetric = []
+var filter = ""
 
+
+function set_filter(filter_name) {
+    filter = filter_name;
+    ingredients = []
+    foodNameData = []
+    foodid = []
+    foodMetric = []
+}
+console.log('filter')
 function get_bubbles(ingredient_name) {
     var raw_data;
     var rkeys;
     endpoint_framework =  "http://api.axonbeats.com/bubble_chart?ingredient=" + ingredient_name
+    if (filter != ""){
+        metric_name = "metric="
+    }
     //http://api.axonbeats.com/bubble_chart?ingredient=Celery&metric=preparation_time
-    recipe_api_request = endpoint_framework
+    recipe_api_request = endpoint_framework + metric_name
+    console.log(recipe_api_request)
     fetch(recipe_api_request)
         .then(response => response.json())
         .then(data => raw_data = data)
