@@ -190,6 +190,7 @@ function get_bubbles(ingredient_name) {
 }
 
 function get_bubbles2(filter_name) {
+    document.getElementById('metric_map').innerText = filter_name
     console.log('filter: ' + filter_name)
     filter = filter_name;
     ingredients = []
