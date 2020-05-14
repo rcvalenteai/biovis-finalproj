@@ -146,25 +146,26 @@
                     <select id="ingredient_select"></select>
                     <p> Select a Metric: </p>
                     <select id="filter_select"></select>
-                    <p>bubble chart desctiption</p>
-                    <p>more description</p>
+                    <p>Quickly find the recipes that most closely match your tastes, group them by ingredient and scale their size based on important recipe factors such as preparation time, calories, fat or carbohydrate content.</p>
+                    <p><b>***</b>if you are looking for a good time, look for groups of recipes containing ingredients such as "Salt" or "Pepper"</p>
                 </div>
             </div>
             <div class="rightcolumn">
                 <div class="card">
-                    <h2>Recipe Details</h2>
+                    <h2>Recipe Nutrient Breakdown</h2>
                         <svg width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1700 900" id="nutr_bar"></svg>
                     
-                    <p>Recipe detail description</p>
+                    <p>Amount in grams (g) of macro and micro nutrients in 1 serving of this recipe.</p>
                 </div>
                 <div class="card">
                     <h3 id="recipe_title">Spanish One-Pan Chicken with Chorizo and Bell Peppers</h3>
                     <h3 id="recipe_rating">3.4</h3>
-                    <div><a id="recipe_instructions" href="www.google.com"><img id="recipe_image"
+                    <div><a id="recipe_instructions" href="www.google.com" target="_blank" rel="noopener noreferrer"><img id="recipe_image"
                               src="https://img.hellofresh.com/f_auto,fl_lossy,q_auto,w_1200/hellofresh_s3/image/spanish-one-pot-chicken-7dc5fcf4.jpg"
                               alt="recipe image"
                               style="width:400px;height:240px;margin-left:auto;margin-right:auto;display:block;">
                         </a>
+                        <p>Click image to view printable full recipe instructions!</p>
                     </div>
 
                 </div>
@@ -175,6 +176,7 @@
             <h2>Created by Richard Valente and Alex Spielman</h2>
         </div>
         <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="./filterButton.js"></script>
         <script src="./bubble.js"></script>
         <script src="./barchart_nutrition.js"></script>
         <script src="./selectButton.js"></script>
