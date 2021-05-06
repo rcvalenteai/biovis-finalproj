@@ -9,7 +9,7 @@ dnspython==1.16.0
 Click==7.0
 docutils==0.15.2
 Flask==1.0.3
-Flask-Cors==3.0.8
+Flask-Cors==3.0.9
 flask-restplus==0.12.1
 gensim==3.8.1
 idna==2.8
